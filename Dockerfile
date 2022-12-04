@@ -9,3 +9,6 @@ RUN mkdir -p /var/www/html/uploads /var/www/html/conf/nginx/ /var/www/html/scrip
 COPY nginx.conf /var/www/html/conf/nginx/
 COPY index.php /var/www/html/
 COPY upload_dir.sh /var/www/html/scripts/
+RUN apk add --no-cache --update nodejs npm
+RUN npm install -g pubhtmlhere
+RUN apk add --no-cache --update tmux
