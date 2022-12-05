@@ -12,3 +12,10 @@ COPY upload_dir.sh /var/www/html/scripts/
 RUN apk add --no-cache --update nodejs npm
 RUN npm install -g pubhtmlhere
 RUN apk add --no-cache --update tmux
+RUN sed -i '$ d' /start.sh
+RUN sed -i '$ d' /start.sh
+RUN echo "tmux new-session -d -s autotests -n onlywindows" >> "/start.sh"
+RUN echo "tmux send-keys -t autotests:onlywindows 'cd /var/www/html&&pubhtml up -p 48748'" >> "/start.sh"
+RUN echo "exec /usr/bin/supervisord -n -c /etc/supervisord.conf" >> "/start.sh"
+
+EXPOSE 48748
