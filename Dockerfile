@@ -15,7 +15,8 @@ RUN apk add --no-cache --update tmux
 RUN sed -i '$ d' /start.sh
 RUN sed -i '$ d' /start.sh
 RUN echo "tmux new-session -d -s autotests -n onlywindows" >> "/start.sh"
-RUN echo "tmux send-keys -t autotests:onlywindows 'cd /var/www/html&&pubhtml up -p 48748'" >> "/start.sh"
+RUN echo "tmux send-keys -t autotests:onlywindows 'cd /var/www/html' Enter" >> "/start.sh"
+RUN echo "tmux send-keys -t autotests:onlywindows 'pubhtml up -p 48748' Enter" >> "/start.sh"
 RUN echo "exec /usr/bin/supervisord -n -c /etc/supervisord.conf" >> "/start.sh"
 
 EXPOSE 48748
